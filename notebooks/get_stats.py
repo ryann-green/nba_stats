@@ -4,6 +4,7 @@ import warnings
 warnings.simplefilter('ignore')
 from sqlalchemy import create_engine
 from urllib.parse import quote
+from creds import pw
 
 
 # get the current season
@@ -16,7 +17,7 @@ print(current_seasons)
 def add_table(df,table):
 
     # script to create sql database for needed tables
-    engine = create_engine('mysql+pymysql://root:AmariG2021!@localhost/nba_stats')
+    engine = create_engine(f'mysql+pymysql://root:{pw}@localhost/nba_stats')
     df.to_sql(f"{table}",con=engine, if_exists='replace')
     
 # get all teams
